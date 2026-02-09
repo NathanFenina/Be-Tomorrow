@@ -1,1 +1,826 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proposition SEO & Netlinking — Décupler pour Be Tomorrow</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1a1a2e;
+  --paper: #faf9f7;
+  --accent: #c8553d;
+  --accent-light: #e8a598;
+  --accent-bg: #fdf0ed;
+  --blue: #2d6a8f;
+  --blue-light: #d4e8f2;
+  --blue-dark: #1b4965;
+  --grey: #6b7280;
+  --grey-light: #e5e5e0;
+  --green: #3a7d5c;
+  --green-light: #e6f4ed;
+  --serif: 'DM Serif Display', Georgia, serif;
+  --sans: 'Outfit', system-ui, sans-serif;
+}
 
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--sans);
+  color: var(--ink);
+  background: var(--paper);
+  line-height: 1.65;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── HERO ─── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 4rem 2rem;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(160deg, #1a1a2e 0%, #1b4965 50%, #2d6a8f 100%);
+  color: white;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at 30% 70%, rgba(200,85,61,0.15) 0%, transparent 50%),
+              radial-gradient(circle at 70% 30%, rgba(45,106,143,0.2) 0%, transparent 50%);
+  animation: drift 20s ease-in-out infinite;
+}
+
+@keyframes drift {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(-2%, 1%) rotate(1deg); }
+}
+
+.hero-content { position: relative; z-index: 1; max-width: 800px; }
+
+.hero-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent-light);
+  border: 1px solid rgba(200,85,61,0.4);
+  padding: 0.5rem 1.5rem;
+  border-radius: 100px;
+  margin-bottom: 2.5rem;
+  animation: fadeUp 0.8s ease both;
+}
+
+.hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(2.8rem, 6vw, 4.5rem);
+  line-height: 1.1;
+  font-weight: 400;
+  margin-bottom: 1.5rem;
+  animation: fadeUp 0.8s 0.15s ease both;
+}
+
+.hero h1 em {
+  color: var(--accent-light);
+  font-style: italic;
+}
+
+.hero-sub {
+  font-size: 1.15rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.75);
+  max-width: 580px;
+  margin: 0 auto 2.5rem;
+  animation: fadeUp 0.8s 0.3s ease both;
+}
+
+.hero-meta {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  animation: fadeUp 0.8s 0.45s ease both;
+}
+
+.hero-meta-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.hero-meta-item .value {
+  font-family: var(--serif);
+  font-size: 1.8rem;
+  color: white;
+}
+
+.hero-meta-item .label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: rgba(255,255,255,0.5);
+}
+
+.hero-scroll {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255,255,255,0.3);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  animation: pulse 2s ease-in-out infinite;
+  z-index: 1;
+}
+
+@keyframes pulse { 0%, 100% { opacity: 0.3; } 50% { opacity: 0.7; } }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── SECTIONS ─── */
+.section {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 5rem 2rem;
+}
+
+.section-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+}
+
+.section h2 {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  line-height: 1.15;
+  margin-bottom: 1.5rem;
+  color: var(--ink);
+}
+
+.section p {
+  color: var(--grey);
+  font-size: 1.05rem;
+  max-width: 680px;
+}
+
+/* ─── CONTEXT CARDS ─── */
+.context-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.25rem;
+  margin-top: 2.5rem;
+}
+
+.context-card {
+  background: white;
+  border: 1px solid var(--grey-light);
+  border-radius: 12px;
+  padding: 1.75rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.context-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.06);
+}
+
+.context-card .icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.context-card h3 {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.context-card p {
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--grey);
+}
+
+/* ─── FORMAT TABLE ─── */
+.format-table {
+  width: 100%;
+  margin-top: 2.5rem;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--grey-light);
+  background: white;
+}
+
+.format-table tr:not(:last-child) td { border-bottom: 1px solid var(--grey-light); }
+
+.format-table td {
+  padding: 1rem 1.5rem;
+  font-size: 0.95rem;
+}
+
+.format-table td:first-child {
+  font-weight: 600;
+  color: var(--ink);
+  width: 35%;
+  background: rgba(0,0,0,0.015);
+}
+
+.format-table td:last-child { color: var(--grey); }
+
+/* ─── PERIMETRE ─── */
+.perimetre-block {
+  background: white;
+  border: 1px solid var(--grey-light);
+  border-radius: 16px;
+  padding: 2.5rem;
+  margin-top: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.perimetre-block h3 {
+  font-family: var(--serif);
+  font-size: 1.4rem;
+  margin-bottom: 0.35rem;
+}
+
+.perimetre-block .subtitle {
+  font-size: 0.85rem;
+  color: var(--accent);
+  font-weight: 500;
+  margin-bottom: 1.25rem;
+}
+
+.perimetre-block ul {
+  list-style: none;
+  padding: 0;
+}
+
+.perimetre-block li {
+  position: relative;
+  padding: 0.5rem 0 0.5rem 1.75rem;
+  font-size: 0.95rem;
+  color: #444;
+  line-height: 1.55;
+}
+
+.perimetre-block li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.perimetre-tag {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+.tag-priority { background: var(--accent-bg); color: var(--accent); }
+.tag-tech { background: var(--blue-light); color: var(--blue-dark); }
+.tag-content { background: var(--green-light); color: var(--green); }
+
+/* ─── BUDGET NETLINKING ─── */
+.budget-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.budget-card {
+  background: white;
+  border: 1px solid var(--grey-light);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.budget-card .type {
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.budget-card .price {
+  font-family: var(--serif);
+  font-size: 1.3rem;
+  color: var(--accent);
+  margin-bottom: 0.25rem;
+}
+
+.budget-card .freq {
+  font-size: 0.8rem;
+  color: var(--grey);
+}
+
+.budget-total {
+  margin-top: 2rem;
+  background: var(--accent-bg);
+  border-radius: 12px;
+  padding: 1.5rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.budget-total .amount {
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  color: var(--accent);
+}
+
+.budget-total .note {
+  font-size: 0.9rem;
+  color: var(--grey);
+  max-width: 400px;
+}
+
+/* ─── TIMELINE ─── */
+.timeline {
+  margin-top: 2.5rem;
+  position: relative;
+  padding-left: 2.5rem;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0.6rem;
+  top: 0.5rem;
+  bottom: 0.5rem;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--accent), var(--blue));
+  border-radius: 2px;
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -2.15rem;
+  top: 0.45rem;
+  width: 12px;
+  height: 12px;
+  background: white;
+  border: 3px solid var(--accent);
+  border-radius: 50%;
+}
+
+.timeline-item:nth-child(even)::before { border-color: var(--blue); }
+
+.timeline-item h4 {
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 0.3rem;
+  color: var(--ink);
+}
+
+.timeline-item p {
+  font-size: 0.9rem;
+  color: var(--grey);
+  line-height: 1.55;
+}
+
+/* ─── RECAP ─── */
+.recap-box {
+  background: linear-gradient(160deg, #1a1a2e, #1b4965);
+  color: white;
+  border-radius: 20px;
+  padding: 3rem;
+  margin-top: 2.5rem;
+}
+
+.recap-box h3 {
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  margin-bottom: 2rem;
+}
+
+.recap-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.recap-item .val {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.recap-item .desc {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.55);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.recap-note {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255,255,255,0.15);
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.6);
+}
+
+/* ─── NEXT STEPS ─── */
+.steps-list {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.step-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  padding: 1.25rem 1.5rem;
+  background: white;
+  border: 1px solid var(--grey-light);
+  border-radius: 12px;
+  transition: transform 0.2s ease;
+}
+
+.step-item:hover { transform: translateX(4px); }
+
+.step-num {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: white;
+  font-weight: 700;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.step-item p { font-size: 0.95rem; color: var(--grey); }
+.step-item strong { color: var(--ink); }
+
+/* ─── VALIDITY ─── */
+.validity-banner {
+  text-align: center;
+  padding: 2.5rem 2rem;
+  background: var(--accent-bg);
+  border-top: 3px solid var(--accent);
+  margin-top: 3rem;
+}
+
+.validity-banner p {
+  font-size: 0.95rem;
+  color: var(--grey);
+}
+
+.validity-banner .date {
+  font-family: var(--serif);
+  font-size: 1.3rem;
+  color: var(--accent);
+  margin-top: 0.25rem;
+}
+
+/* ─── FOOTER ─── */
+footer {
+  text-align: center;
+  padding: 3rem 2rem;
+  color: var(--grey);
+  font-size: 0.85rem;
+}
+
+footer .name {
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  color: var(--ink);
+  margin-bottom: 0.25rem;
+}
+
+footer a { color: var(--blue); text-decoration: none; }
+footer a:hover { text-decoration: underline; }
+
+/* ─── DIVIDER ─── */
+.divider {
+  max-width: 900px;
+  margin: 0 auto;
+  border: none;
+  border-top: 1px solid var(--grey-light);
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 640px) {
+  .section { padding: 3.5rem 1.25rem; }
+  .perimetre-block { padding: 1.5rem; }
+  .recap-box { padding: 2rem 1.5rem; }
+  .hero-meta { gap: 1.25rem; }
+  .budget-total { flex-direction: column; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">Décupler × Be Tomorrow</div>
+    <h1>Accompagnement <em>SEO & Netlinking</em></h1>
+    <p class="hero-sub">Une stratégie sur 6 mois pour construire votre notoriété digitale, renforcer votre présence organique et alimenter vos signaux GEO.</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <span class="value">1 000 €</span>
+        <span class="label">HT / mois</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="value">6 mois</span>
+        <span class="label">Programme</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="value">~2 jours</span>
+        <span class="label">/ mois dédiés</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll">↓ Découvrir l'offre</div>
+</section>
+
+<!-- CONTEXTE -->
+<div class="section">
+  <div class="section-label">01 — Contexte</div>
+  <h2>Pourquoi cet accompagnement</h2>
+  <p>Suite à nos échanges et à l'audit réalisé, voici les constats qui fondent cette proposition.</p>
+  <div class="context-grid">
+    <div class="context-card">
+      <div class="icon" style="background: var(--accent-bg);">🔗</div>
+      <h3>Netlinking inexistant</h3>
+      <p>Aucune stratégie de backlinks ni de référencement sur les plateformes tierces (classements, annuaires, forums B2B).</p>
+    </div>
+    <div class="context-card">
+      <div class="icon" style="background: var(--blue-light);">🤖</div>
+      <h3>Visibilité GEO très faible</h3>
+      <p>Les moteurs IA ne remontent pas Be Tomorrow. L'absence de signaux de notoriété externes en est la cause principale.</p>
+    </div>
+    <div class="context-card">
+      <div class="icon" style="background: var(--green-light);">📄</div>
+      <h3>SEO en construction</h3>
+      <p>Des pages stratégiques manquantes, un maillage interne à structurer et des contenus existants à optimiser.</p>
+    </div>
+    <div class="context-card">
+      <div class="icon" style="background: #f3e8ff;">💰</div>
+      <h3>Budget réalloué</h3>
+      <p>La réduction Google Ads et le renforcement LinkedIn Ads libèrent une enveloppe dédiée au SEO.</p>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- FORMAT -->
+<div class="section">
+  <div class="section-label">02 — Format</div>
+  <h2>Les paramètres du programme</h2>
+  <table class="format-table">
+    <tr><td>Durée</td><td>6 mois — du 1er mars au 31 août 2026, renouvelable par semestre</td></tr>
+    <tr><td>Tarif</td><td>1 000 € HT / mois</td></tr>
+    <tr><td>Volume de travail</td><td>~2 jours / mois dédiés à Be Tomorrow</td></tr>
+    <tr><td>Priorisation</td><td>Chaque mois, les actions sont priorisées ensemble selon les objectifs et les résultats</td></tr>
+    <tr><td>SEO AI Systems</td><td>Non inclus — une formule d'abonnement est à souscrire séparément</td></tr>
+    <tr><td>Point de suivi</td><td>1 call synchro mensuel + reporting</td></tr>
+    <tr><td>Engagement</td><td>6 mois minimum, facturation mensuelle</td></tr>
+  </table>
+</div>
+
+<hr class="divider">
+
+<!-- PERIMETRE -->
+<div class="section">
+  <div class="section-label">03 — Périmètre</div>
+  <h2>Ce qui est inclus chaque mois</h2>
+  <p>Les actions sont adaptées et priorisées mensuellement selon les résultats et les besoins identifiés.</p>
+
+  <div class="perimetre-block">
+    <span class="perimetre-tag tag-priority">Priorité #1</span>
+    <h3>Netlinking & Notoriété</h3>
+    <p class="subtitle">Le cœur de cette offre</p>
+    <ul>
+      <li>Audit et sélection des plateformes de classement pertinentes (Sortlist, Leaders League, etc.) — analyse du ROI réel vs. coût</li>
+      <li>Stratégie d'acquisition de backlinks : guest blogging, citations, partenariats, forums spécialisés</li>
+      <li>Inscription et optimisation sur les annuaires B2B et sectoriels stratégiques</li>
+      <li>Soumission aux moteurs IA / LLM pour renforcer la visibilité GEO</li>
+      <li>Actions de netlinking « gratuites » ou low-cost (profils, citations, annuaires ouverts)</li>
+    </ul>
+  </div>
+
+  <div class="perimetre-block">
+    <span class="perimetre-tag tag-tech">Technique</span>
+    <h3>Optimisation Technique & Maillage</h3>
+    <ul>
+      <li>Corrections techniques prioritaires : robots.txt, sitemap, indexation, redirections</li>
+      <li>Amélioration du maillage interne entre les pages clés</li>
+      <li>Optimisation des balises (title, meta, Hn) sur les pages stratégiques</li>
+      <li>Vérification et correction des erreurs 404 et liens cassés</li>
+      <li>Rich snippets et données structurées là où pertinent</li>
+    </ul>
+  </div>
+
+  <div class="perimetre-block">
+    <span class="perimetre-tag tag-content">Stratégie & Contenu</span>
+    <h3>Mots-clés, Contenu & Pages à fort impact</h3>
+    <ul>
+      <li>Validation et ajustement de la stratégie de mots-clés, suivi mensuel des positions</li>
+      <li>Révision et optimisation des sorties SEO AI Systems</li>
+      <li>Identification et brief des pages piliers manquantes (expertise, sectorielles)</li>
+      <li>Optimisation SEO de contenus existants à fort potentiel</li>
+      <li>Accompagnement éditorial : alignement entre intention de recherche et angle métier</li>
+    </ul>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- BUDGET NETLINKING -->
+<div class="section">
+  <div class="section-label">04 — Budget Netlinking</div>
+  <h2>Estimation du budget complémentaire</h2>
+  <p>En plus de l'accompagnement, l'acquisition de backlinks payants nécessite un budget dédié.</p>
+
+  <div class="budget-grid">
+    <div class="budget-card">
+      <div class="type">Articles sponsorisés & Guest posts</div>
+      <div class="price">80 – 300 €</div>
+      <div class="freq">par article</div>
+    </div>
+    <div class="budget-card">
+      <div class="type">Annuaires premium B2B</div>
+      <div class="price">0 – 150 € / an</div>
+      <div class="freq">3 à 5 inscriptions</div>
+    </div>
+    <div class="budget-card">
+      <div class="type">Plateformes de classement</div>
+      <div class="price">Variable</div>
+      <div class="freq">à évaluer ensemble</div>
+    </div>
+    <div class="budget-card">
+      <div class="type">Citations & Profils</div>
+      <div class="price">Gratuit</div>
+      <div class="freq">en continu</div>
+    </div>
+  </div>
+
+  <div class="budget-total">
+    <div>
+      <div class="amount">200 à 400 € / mois</div>
+      <div style="font-size:0.8rem;color:var(--grey);margin-top:0.2rem;">Estimation budget netlinking (hors accompagnement)</div>
+    </div>
+    <div class="note">Le choix précis des backlinks sera fait ensemble au démarrage en fonction de vos priorités et de l'analyse de votre secteur.</div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- PLANNING -->
+<div class="section">
+  <div class="section-label">05 — Planning</div>
+  <h2>Déroulé indicatif sur 6 mois</h2>
+  <p>Chaque mois, les actions sont priorisées ensemble. Voici le déroulé type.</p>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <h4>Mois 1 — Fondations</h4>
+      <p>Audit technique complet, définition de la stratégie mots-clés, sélection des plateformes netlinking, corrections prioritaires, premières inscriptions annuaires.</p>
+    </div>
+    <div class="timeline-item">
+      <h4>Mois 2 — Lancement</h4>
+      <p>Premiers guest posts et citations, optimisation du maillage interne, briefs des pages piliers à créer.</p>
+    </div>
+    <div class="timeline-item">
+      <h4>Mois 3 — Accélération</h4>
+      <p>Poursuite du netlinking, optimisation de contenus existants, soumission aux moteurs IA, suivi des positions.</p>
+    </div>
+    <div class="timeline-item">
+      <h4>Mois 4 — Renforcement</h4>
+      <p>Renforcement des backlinks, création et optimisation de pages stratégiques, analyse des premiers résultats.</p>
+    </div>
+    <div class="timeline-item">
+      <h4>Mois 5 — Optimisation</h4>
+      <p>Netlinking ciblé haute valeur, optimisation technique continue, ajustement de la stratégie selon les données.</p>
+    </div>
+    <div class="timeline-item">
+      <h4>Mois 6 — Bilan & Suite</h4>
+      <p>Bilan complet de performance, recommandations pour la suite, proposition de reconduction pour le semestre suivant.</p>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- RECAP -->
+<div class="section">
+  <div class="section-label">06 — Récapitulatif</div>
+  <h2>Synthèse financière</h2>
+
+  <div class="recap-box">
+    <h3>Votre investissement</h3>
+    <div class="recap-grid">
+      <div class="recap-item">
+        <div class="val">1 000 €</div>
+        <div class="desc">HT / mois</div>
+      </div>
+      <div class="recap-item">
+        <div class="val">6 000 €</div>
+        <div class="desc">Total 6 mois</div>
+      </div>
+      <div class="recap-item">
+        <div class="val">200–400 €</div>
+        <div class="desc">Netlinking / mois (en sus)</div>
+      </div>
+      <div class="recap-item">
+        <div class="val">En option</div>
+        <div class="desc">SEO AI Systems (abonnement séparé)</div>
+      </div>
+    </div>
+    <div class="recap-note">Facturation mensuelle. Démarrage prévu le 1er mars 2026.</div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- PROCHAINES ÉTAPES -->
+<div class="section">
+  <div class="section-label">07 — Prochaines étapes</div>
+  <h2>Pour démarrer</h2>
+
+  <div class="steps-list">
+    <div class="step-item">
+      <div class="step-num">1</div>
+      <div><strong>Validation de cette proposition</strong><p>En courant février 2026.</p></div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">2</div>
+      <div><strong>Kick-off & audit initial</strong><p>Dès le 1er mars 2026. Premier call pour définir les priorités ensemble.</p></div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">3</div>
+      <div><strong>Lancement des premières actions</strong><p>Stratégie mots-clés, corrections techniques et premiers mouvements netlinking.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- VALIDITÉ -->
+<div class="validity-banner">
+  <p>Cette offre est valable jusqu'au</p>
+  <div class="date">15 février 2026</div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="name">Nathan FENINA — Décupler</div>
+  <a href="mailto:fenina.nathan@gmail.com">fenina.nathan@gmail.com</a>
+  <p style="margin-top:0.75rem;">Je reste disponible pour toute question.</p>
+</footer>
+
+</body>
+</html>
